@@ -2,7 +2,7 @@ package server
 
 import (
 	"github.com/mwitkow/go-grpc-middleware"
-	"github.com/weave-lab/helloworld_grpctooling_poc/greeter_server/middleware"
+	"github.com/troylelandshields/helloworld_grpctooling_poc/greeter_server/middleware"
 	"google.golang.org/grpc"
 )
 

@@ -43,12 +43,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/weave-lab/wlib/wlog"
-	"github.com/weave-lab/wlib/wlog/tag"
-
-	"github.com/weave-lab/helloworld_grpctooling_poc/greeter_server/middleware"
-	"github.com/weave-lab/helloworld_grpctooling_poc/greeter_server/server"
-	pb "github.com/weave-lab/helloworld_grpctooling_poc/helloworld"
+	"github.com/troylelandshields/helloworld_grpctooling_poc/greeter_server/middleware"
+	"github.com/troylelandshields/helloworld_grpctooling_poc/greeter_server/server"
+	pb "github.com/troylelandshields/helloworld_grpctooling_poc/helloworld"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
@@ -121,7 +118,7 @@ func main() {
 			fmt.Println("stopped server...")
 			os.Exit(0)
 		default:
-			wlog.Error("Received unknown signal", tag.String("signal", sig.String()))
+			fmt.Println("Received unknown signal")
 		}
 	}
 }
