@@ -38,7 +38,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/golang/protobuf/proto"
 	pb "github.com/troylelandshields/helloworld_grpctooling_poc/helloworld"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"

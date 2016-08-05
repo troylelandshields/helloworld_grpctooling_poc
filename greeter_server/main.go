@@ -43,11 +43,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/troylelandshields/helloworld_grpctooling_poc/greeter_server/middleware"
 	"github.com/troylelandshields/helloworld_grpctooling_poc/greeter_server/server"
 	pb "github.com/troylelandshields/helloworld_grpctooling_poc/helloworld"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/examples/helloworld/greeter_server/middleware"
 )
 
 const (
@@ -72,6 +72,7 @@ func (s *greeterserver) SayHelloSlow(ctx context.Context, in *pb.HelloRequest) (
 //SayHelloToMany receives requests from a stream and sends responses to a stream
 func (s *greeterserver) SayHelloToMany(ss pb.Greeter_SayHelloToManyServer) error {
 	for {
+		fmt.Println("Waiting for someone to say hello to")
 		in, err := ss.Recv()
 		if err == io.EOF {
 			break
@@ -81,11 +82,15 @@ func (s *greeterserver) SayHelloToMany(ss pb.Greeter_SayHelloToManyServer) error
 			return err
 		}
 
+		fmt.Printf("Saying hello to: %s\n", in.Name)
+
 		err = ss.Send(&pb.HelloReply{Message: "Hello to " + in.Name})
 		if err != nil {
 			fmt.Println("Err while saying hello to many:", err)
 			return err
 		}
+
+		fmt.Printf("Said hello to: %s\n", in.Name)
 	}
 	return nil
 }
